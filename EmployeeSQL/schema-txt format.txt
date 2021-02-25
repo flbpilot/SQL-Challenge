@@ -1,4 +1,4 @@
-﻿departments
+departments
 -
 dept_no TEXT PK
 dept_name TEXT
