@@ -3,7 +3,7 @@
 
 
 CREATE TABLE "departments" (
-    "dept_no" TEXT   NOT NULL,
+    "dept_no" VARCHAR(5)   NOT NULL,
     "dept_name" TEXT   NOT NULL,
     CONSTRAINT "pk_departments" PRIMARY KEY (
         "dept_no"
@@ -32,7 +32,7 @@ CREATE TABLE "salaries" (
 );
 
 CREATE TABLE "titles" (
-    "title_id" TEXT   NOT NULL,
+    "title_id" VARCHAR(5)   NOT NULL,
     "title" TEXT   NOT NULL,
     CONSTRAINT "pk_titles" PRIMARY KEY (
         "title_id"
@@ -41,7 +41,7 @@ CREATE TABLE "titles" (
 
 CREATE TABLE "dept_manager" (
     "emp_no" INT   NOT NULL,
-    "dept_no" TEXT   NOT NULL,
+    "dept_no" VARCHAR(5)   NOT NULL,
     CONSTRAINT "pk_dept_manager" PRIMARY KEY (
         "emp_no"
      )
@@ -49,7 +49,7 @@ CREATE TABLE "dept_manager" (
 
 CREATE TABLE "dept_emp" (
     "emp_no" INT   NOT NULL,
-    "dept_no" TEXT   NOT NULL,
+    "dept_no" VARCHAR(5)   NOT NULL,
 
 );
 
@@ -137,3 +137,5 @@ where d.dept_no in (
 
 --7. List all employees in the Sales and Development departments, including their employee number, 
 --last name, first name, and department name.
+
+

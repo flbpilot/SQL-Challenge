@@ -1,6 +1,6 @@
 ﻿departments
 -
-dept_no TEXT PK
+dept_no VARCHAR(5) PK
 dept_name TEXT
 
 
@@ -23,18 +23,18 @@ salary INT
 
 titles
 -
-title_id TEXT PK
+title_id VARCHAR(5) PK
 title TEXT
 
 
 dept_manager
 -
 emp_no INT PK FK >- employees.emp_no
-dept_no TEXT FK >- departments.dept_no
+dept_no VARCHAR(5) FK >- departments.dept_no
 
 
 
 dept_emp
 -
 emp_no INT  FK >- employees.emp_no
-dept_no TEXT FK >- departments.dept_no
+dept_no VARCHAR(5) FK >- departments.dept_no
