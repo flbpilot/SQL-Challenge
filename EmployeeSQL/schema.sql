@@ -36,5 +36,5 @@ dept_no VARCHAR(5) FK >- departments.dept_no
 
 dept_emp
 -
-emp_no INT  FK >- employees.emp_no
-dept_no VARCHAR(5) FK >- departments.dept_no
+emp_no INT PK FK >- employees.emp_no
+dept_no VARCHAR(5) PK FK >- departments.dept_no

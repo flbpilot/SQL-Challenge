@@ -50,7 +50,9 @@ CREATE TABLE "dept_manager" (
 CREATE TABLE "dept_emp" (
     "emp_no" INT   NOT NULL,
     "dept_no" VARCHAR(5)   NOT NULL,
-
+    CONSTRAINT "pk_dept_emp" PRIMARY KEY (
+        "emp_no","dept_no"
+     )
 );
 
 
@@ -92,10 +94,10 @@ where date_part('year', hire_date) = '1986'
 --3. List the manager of each department with the following information: department number, department name, 
 --the manager's employee number, last name, first name.
 
-select d.dept_no, b.dept_name, d.emp_no, e.last_name, e.first_name 
+select d.dept_no, dep.dept_name, d.emp_no, e.last_name, e.first_name 
 from dept_manager d
-join departments b
-	on (d.dept_no = b.dept_no)
+join departments dep
+	on (d.dept_no = dep.dept_no)
 join employees e
 	on (d.emp_no = e.emp_no)
 ;
@@ -103,10 +105,10 @@ join employees e
 --4. List the department of each employee with the following information: employee number, last name, 
 --first name, and department name.
 
-select d.emp_no, e.last_name, e.first_name, b.dept_name  
+select d.emp_no, e.last_name, e.first_name, dep.dept_name  
 from dept_emp d
-join departments b
-	on (d.dept_no = b.dept_no)
+join departments dep
+	on (d.dept_no = dep.dept_no)
 join employees e
 	on (d.emp_no = e.emp_no)
 ;
@@ -122,12 +124,12 @@ and last_name like 'B%'
 --6. List all employees in the Sales department, including their employee number, 
 --last name, first name, and department name.
 
-select d.emp_no, e.last_name, e.first_name, c.dept_name
+select d.emp_no, e.last_name, e.first_name, dep.dept_name
 from dept_emp d
 join employees e
 	on (d.emp_no = e.emp_no)
-join departments c
-	on (d.dept_no = c.dept_no)
+join departments dep
+	on (d.dept_no = dep.dept_no)
 where d.dept_no in (
 	select dept_no 
 	from departments 
@@ -138,4 +140,26 @@ where d.dept_no in (
 --7. List all employees in the Sales and Development departments, including their employee number, 
 --last name, first name, and department name.
 
+select d.emp_no, e.last_name, e.first_name, dep.dept_name
+from dept_emp d
+join employees e
+	on (d.emp_no = e.emp_no)
+join departments dep
+	on (d.dept_no = dep.dept_no)
+where d.dept_no in (
+	select dept_no 
+	from departments 
+	where dept_name = 'Sales'
+	or dept_name = 'Development'
+	)
+;
 
+--8. In descending order, list the frequency count of employee last names, i.e., 
+--how many employees share each last name.
+
+SELECT last_name, COUNT(last_name) AS count
+FROM employees
+GROUP BY 1
+ORDER BY count DESC
+
+;
